@@ -18,7 +18,6 @@ public:
         res[i][j] = matrix[j][i];
       }
     }
-
     // Return the transposed matrix
     return res;
   }

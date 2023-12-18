@@ -45,3 +45,8 @@ public:
     return (firstH * secondH) - (firstL * secondL);
   }
 };
+
+/*
+Time Complexity: O(n)
+Space Complexity: O(1)
+*/

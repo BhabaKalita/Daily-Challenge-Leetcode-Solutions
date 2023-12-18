@@ -1,9 +1,3 @@
-#include <iostream>
-#include <limits.h> // For INT_MIN and INT_MAX
-#include <vector>
-
-using namespace std;
-
 class Solution {
 public:
   int maxProductDifference(vector<int> &nums) {

@@ -1,6 +1,4 @@
-.gitignore
-.*
+*
 !*/
-main
-Makefile
-.ccls-cache
+!/2023/
+!/2024/

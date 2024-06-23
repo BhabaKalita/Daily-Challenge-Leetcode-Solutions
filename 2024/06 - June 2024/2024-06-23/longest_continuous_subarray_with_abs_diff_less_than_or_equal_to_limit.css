@@ -1,0 +1,51 @@
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums, int limit) {
+        // Deques to maintain the increasing and decreasing sequences
+        deque<int> increase;
+        deque<int> decrease;
+        // Variable to store the maximum length of the subarray
+        int max_len = 0;
+        // Left pointer of the sliding window
+        int left = 0;
+
+        // Iterate through the array with the right pointer
+        for (int right = 0; right < nums.size(); ++right) {
+            // Maintain the increasing deque
+            while (!increase.empty() && nums[right] < increase.back()) {
+                increase.pop_back();
+            }
+            increase.push_back(nums[right]);
+
+            // Maintain the decreasing deque
+            while (!decrease.empty() && nums[right] > decrease.back()) {
+                decrease.pop_back();
+            }
+            decrease.push_back(nums[right]);
+
+            // Ensure the current window satisfies the limit condition
+            while (decrease.front() - increase.front() > limit) {
+                // If the leftmost element is equal to the front of decrease deque, pop it
+                if (nums[left] == decrease.front()) {
+                    decrease.pop_front();
+                }
+                // If the leftmost element is equal to the front of increase deque, pop it
+                if (nums[left] == increase.front()) {
+                    increase.pop_front();
+                }
+                // Move the left pointer to shrink the window
+                ++left;
+            }
+
+            // Update the maximum length of the subarray
+            max_len = std::max(max_len, right - left + 1);
+        }
+
+        return max_len;
+    }
+};
+
+/*
+Time Complexity: O(N)
+Space Complexity: O(N)
+*/
